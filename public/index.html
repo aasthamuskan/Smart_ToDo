@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Todo List</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        #minicircle {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background-color: rgba(255,255,255,0.15);
+            border: 1.5px solid rgba(255,255,255,0.5);
+            position: fixed;
+            top: 0; left: 0;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            backdrop-filter: blur(4px);
+            transition: background-color 0.2s;
+        }
+        #bg-canvas {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- 3D Metaverse Background Canvas -->
+    <canvas id="bg-canvas"></canvas>
+
+    <div id="minicircle"></div>
+    <h1>✅ Smart Todo List</h1>
+    <p>Double click to edit · Use AI to generate tasks from a goal</p>
+
+    <!-- Add Todo Section -->
+    <div id="add-section">
+        <input type="text" id="todo-input" placeholder="Enter a task...">
+
+        <!-- Priority Dropdown -->
+        <select id="priority-select">
+            <option value="low">🟢 Low</option>
+            <option value="medium" selected>🟡 Medium</option>
+            <option value="high">🔴 High</option>
+        </select>
+
+        <!-- Due Date -->
+        <input type="date" id="due-date">
+
+        <button id="add-btn">Add</button>
+    </div>
+
+    <!-- Search Bar -->
+    <div id="search-section">
+        <input type="text" id="search-input" placeholder="🔍 Search tasks...">
+    </div>
+
+    <!-- Filter Buttons -->
+    <div id="filter-section">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="high">🔴 High</button>
+        <button class="filter-btn" data-filter="medium">🟡 Medium</button>
+        <button class="filter-btn" data-filter="low">🟢 Low</button>
+        <button class="filter-btn" data-filter="completed">✔ Done</button>
+    </div>
+
+    <!-- Task Completion Tracking -->
+    <div id="progress-section">
+        <div id="progress-stats">
+            <span id="stat-completed">0 Done</span>
+            <span id="stat-total">0 Total</span>
+            <span id="stat-percent">0%</span>
+        </div>
+        <div id="progress-bar-bg">
+            <div id="progress-bar-fill"></div>
+        </div>
+        <p id="progress-msg"></p>
+    </div>
+
+    <!-- AI section -->
+    <div id="ai-section">
+        <input type="text" id="ai-input" placeholder="Describe your goal...">
+        <button id="ai-btn">✦ Suggest Tasks</button>
+        <p id="ai-status"></p>
+    </div>
+
+    <ul id="todo-list"></ul>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="script.js"></script>
+    <script src="bg-animation.js"></script>
+</body>
+</html>
